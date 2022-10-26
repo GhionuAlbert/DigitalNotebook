@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content%}
+
+        {{ note.date }}
+        {{ note.data }}
+
+<form method="POST">
+    <textarea name="note" id="note" class="form-control">{{ note.data }}</textarea>
+    <br/>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Edit Note</button>
+    </div>
+</form>
+<marquee><img src="https://i.ibb.co/r04Lv92/note-Image.jpg" width=300 height=200></marquee>
+
+{% endblock %}
