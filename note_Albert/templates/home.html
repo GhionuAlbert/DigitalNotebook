@@ -1,26 +1,36 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
-    <h1 align="center">Notes</h1>
-    <ul class="list-group list-group-flush" id="notes">
-      {% for note in user.notes %}
-      <li class="list-group-item">
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content%}
+
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">
         {{ note.date }}
         {{ note.data }}
-        <a href="{{ url_for('delete_note', item_to_delete=note.id) }}"><button type="button" class="close" onClick="">
-          <span aria-hidden="true">&times;</span>
-        </button></a>
-          <a href="{{ url_for('edit_note', id=note.id) }}"><button type="button" class="close" onClick="">
-          <span aria-hidden="true">Edit</span>
-        </button></a>
-      </li>
-      {% endfor %}
-    </ul>
-    <form method="POST">
-      <textarea name="note" id="note" class="form-control"></textarea>
-      <br />
-      <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-      </div>
-    </form>
-    <marquee><img src="https://i.ibb.co/r04Lv92/note-Image.jpg" width=300 height=200></marquee>
+        <a href="{{ url_for('delete_note', item_to_delete=note.id) }}">
+            <button type="button" class="close" onClick="">
+                <span aria-hidden="true">&#128473;</span>
+            </button>
+        </a>
 
-    {% endblock %}
+        <a href="{{ url_for('edit_note', id=note.id) }}">
+            <button type="button" class="close" onClick="">
+                <span aria-hidden="true">&#128393;</span>
+            </button>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br/>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
+<marquee><img src="https://i.ibb.co/r04Lv92/note-Image.jpg" width=300 height=200></marquee>
+
+{% endblock %}

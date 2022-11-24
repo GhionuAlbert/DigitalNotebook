@@ -128,8 +128,12 @@ def edit_note(id):
     if request.method == 'POST':
         note = request.form.get('note')
         note_to_edit.data = note
-        db.session.commit()
-        flash('Note edited succesfully!')
+        if len(note) < 1:
+            flash('Note is too short!', category='error')
+            return render_template('edit.html', note=note_to_edit, user=current_user)
+        else:
+            db.session.commit()
+            flash('Note edited succesfully!')
         return redirect(url_for('home'))
 
     return render_template('edit.html', note=note_to_edit, user=current_user)
